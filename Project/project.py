@@ -25,15 +25,11 @@ labelencoder_y= LabelEncoder()
 y= labelencoder_y.fit_transform(y)   
 
 #splitting the Dataset into the training set and test set
-x_train, x_test, y_train, y_test= train_test_split(x, y, test_size= 0.05, random_state=0)
+x_train, x_test, y_train, y_test= train_test_split(x, y, test_size= 0.15, random_state=0)
 
-#feature scaling
-st_x= StandardScaler()  
-x_train= st_x.fit_transform(x_train)  
-x_test= st_x.transform(x_test)
 
 #KNN
-classifier= KNeighborsClassifier(n_neighbors=7, metric='minkowski', p=2 )
+classifier= KNeighborsClassifier(n_neighbors=8 , metric='minkowski', p=2 )
 classifier.fit(x_train, y_train) 
 
 #predicting the test set result

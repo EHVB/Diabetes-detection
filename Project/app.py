@@ -6,10 +6,11 @@ from PIL import Image
 
 pickle_in = open('classifier.pkl', 'rb')
 classifier = pickle.load(pickle_in)
+
 def welcome():
 	return 'welcome all'
 def prediction(cholesterol, glucose, hdl_chol, chol_hdl_ratio, age, gender, height, weight, bmi, systolic_bp, diastolic_bp, waist, hip, waist_hip_ratio):
-
+    
 	prediction = classifier.predict(
 		[[cholesterol, glucose, hdl_chol, chol_hdl_ratio, age, gender, height, weight, bmi, systolic_bp, diastolic_bp, waist, hip, waist_hip_ratio]])
 	print(prediction)
@@ -22,6 +23,8 @@ def main():
 	</div>
 	"""
     st.markdown(html_temp, unsafe_allow_html = True)
+    
+    
     gender = st.selectbox("gender ", ['Male','Female'])
     if gender == "Male":
         gender = 1
@@ -48,6 +51,8 @@ def main():
     
     if st.button("Predict"):
         result = prediction(cholesterol, glucose, hdl_chol, chol_hdl_ratio, age, gender, height, weight, bmi, systolic_bp, diastolic_bp, waist, hip, waist_hip_ratio)
+    
+    
     if result == 0:
         result = "Diabetes"
     elif result ==1:
